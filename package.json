@@ -2,14 +2,13 @@
   "name": "demo",
   "version": "1.0.0",
   "description": "demo",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lixiaojun",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.4.4",
     "express": "^4.13.3",
     "log4js": "^0.6.26"
   }
