@@ -4,14 +4,19 @@
  */
 
 var express = require('express');
-var http = require('http');
+var https= require('https');
 var log4js = require('log4js');
+var fs = require('fs');
 
 var app = express();
 
+https.createServer({
+	key: fs.readFileSync('sslcert/key.pem'),
+	cert: fs.readFileSync('sslcert/cert.pem')
+},app).listen(8081);
+
 log4js.configure('log4js.config.json',{reloadSecs:300});
 
-app.listen(80);
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
@@ -25,5 +30,12 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 app.all('/error',function(req,res){
-
+	console.log(req.query);
+	console.log(req.body);
+	res.end();
+});
+app.all('/',function(req,res){
+	res.header('Content-type', 'text/html');
+	console.log(req.headers);
+	return res.end('<h1>Hello, Secure World!</h1>');
 });
