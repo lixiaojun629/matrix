@@ -7,6 +7,7 @@ var express = require('express');
 var https= require('https');
 var log4js = require('log4js');
 var fs = require('fs');
+var bodyParser = require('body-parser');
 
 var app = express();
 
@@ -28,6 +29,11 @@ var allowCrossDomain = function(req, res, next) {
 };
 
 app.use(allowCrossDomain);
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+
 
 app.all('/error',function(req,res){
 	console.log(req.query);
