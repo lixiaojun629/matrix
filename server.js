@@ -36,8 +36,7 @@ app.use(bodyParser.json());
 
 
 app.all('/error',function(req,res){
-	console.log(req.query);
-	console.log(req.body);
+	console.log(JSON.stringify(req.body));
 	res.end();
 });
 app.all('/',function(req,res){
