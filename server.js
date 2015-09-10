@@ -18,6 +18,7 @@ https.createServer({
 
 log4js.configure('log4js.config.json',{reloadSecs:300});
 
+var logger = log4js.getLogger('console');
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 
 app.all('/error',function(req,res){
 	console.log(JSON.stringify(req.body));
+	logger.debug(req.body);
 	res.end();
 });
 app.all('/',function(req,res){
